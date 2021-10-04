@@ -40,7 +40,7 @@ pyenv versions
 
 
 
-## Virtualenv
+## Pyenv Virtualenv Plugin
 
 ```console
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
