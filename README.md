@@ -2,122 +2,110 @@
 
 ## Pyenv
 
-```console
-sudo apt update && sudo apt upgrade -y
-```
 
-```console
-sudo apt install -y make build-essential libssl-dev zlib1g-dev\
-libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev\
-libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl\
-git
-```
+    sudo apt update && sudo apt upgrade -y
 
-```console
-git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-```
+Install dependencies
 
-```console
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
-echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
-```
+    sudo apt install -y make build-essential libssl-dev zlib1g-dev\
+    libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev\
+    libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl\
+    git
 
-```console
-exec "$SHELL"
-```
+Clone Pyenv
 
-```console
-pyenv install 3.9.1
-```
+    git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
-Useful commands
+Set environment variables
 
-```console
-pyenv install --list
-pyenv versions
-```
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+    echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
 
+    exec "$SHELL"
+    
+Install the desired Python version
+    
+    pyenv install 3.9.1
+
+
+Other useful commands
+
+    pyenv install --list
+    pyenv versions
 
 
 ## Pyenv Virtualenv Plugin
 
-```console
-git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
-```
+Clone Virtualenv Pyenv plugin
 
-```console
-echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
-exec "$SHELL"
-```
+    git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 
-```console
-pyenv virtualenv 3.9.1 ai
-pyenv global ai
-```
+Set environment variables
+
+    echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+    exec "$SHELL"
+
+Create an enviroment named "ai" and set it as the global python interpreter
+
+    pyenv virtualenv 3.9.1 ai
+    pyenv global ai
 
 Or only set to local in a folder
 
-```console
-pyenv local ai
-```
+    pyenv local ai
 
 Or only activate and deactivate on demand
 
-```console
-pyenv activate ai
-pyenv deactivate
-```
+    pyenv activate ai
+    pyenv deactivate
 
 
 ## ROS Noetic
 
-```console
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-```
+Add keys
 
-```console
-sudo apt update
-sudo apt install ros-noetic-desktop-full
-```
+    sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+    curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
 
-```console
-echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
-```
+Update and install ROS Noetic Desktop
 
-```console
-pyenv activate ai
-pip install rosdep rosinstall rosinstall-generator wstool catkin_tools
-```
+    sudo apt update
+    sudo apt install ros-noetic-desktop-full
+
+Set environment variables
+
+    echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+    source ~/.bashrc
+
+Install the ROS Python tools
+
+    pyenv activate ai
+    pip install rosdep rosinstall rosinstall-generator wstool catkin_tools
 
 
 ## ROS Workspace
 
-```console
-mkdir -p ~/catkin_ws/src
-cd ~/catkin_ws
-```
+Create the workspace
 
-```console
-catkin init
-catkin build
-```
+    mkdir -p ~/catkin_ws/src
+    cd ~/catkin_ws
 
-```console
-source devel/setup.bash
-```
+Initialize the workspace
 
-You can add that to .bashrc if you want
+    catkin init
+    catkin build
+  
+Source the setup.bash file (repeat after a build)
 
-```console
-echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
-```
+    source devel/setup.bash
+
+You can add that to .bashrc if you want (but you still have to call it after a build)
+
+    echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 
 To build packages in release mode
 
-```console
-cd ~/catkin_ws/
-catkin config -DCMAKE_BUILD_TYPE=Release
-```
+    cd ~/catkin_ws/
+    catkin config -DCMAKE_BUILD_TYPE=Release
+
