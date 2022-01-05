@@ -81,7 +81,7 @@ Set environment variables
 Install the ROS Python tools
 
     pyenv activate ai
-    pip install rosdep rosinstall rosinstall-generator wstool catkin_tools
+    pip install rosdep rosinstall rosinstall-generator wstool catkin_tools empy
 
 
 ## ROS Workspace
